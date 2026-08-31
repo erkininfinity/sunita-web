@@ -99,6 +99,6 @@ const server = http.createServer((req, res) => {
   res.end(body);
 });
 
-server.listen(PORT, () => {
-  console.log(`SENERGY running at http://localhost:${PORT}`);
+server.listen(PORT, "0.0.0.0", () => {
+  console.log(`SENERGY running on ${PORT}`);
 });
