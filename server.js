@@ -54,6 +54,12 @@ function getFile(filePath, contentType) {
 
 const server = http.createServer((req, res) => {
   const urlPath = decodeURIComponent(req.url.split("?")[0]);
+
+  if (urlPath === "/health") {
+    res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "no-store" });
+    return res.end("ok");
+  }
+
   let filePath = path.join(__dirname, urlPath === "/" ? "/index.html" : urlPath);
 
   if (!filePath.startsWith(__dirname + path.sep)) {
