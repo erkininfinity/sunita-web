@@ -68,6 +68,7 @@
   padding: 0.5rem 0.85rem;
   font-size: 0.9rem;
   font-weight: 600;
+  white-space: nowrap;
   color: var(--ink-2);
   transition: color 0.3s var(--ease);
 }
@@ -142,7 +143,7 @@
   transform: translateX(-50%) translateY(-5px) rotate(-45deg);
 }
 
-@media (max-width: 1040px) {
+@media (max-width: 1180px) {
   .nav,
   .hdr__cta {
     display: none;
@@ -223,14 +224,6 @@
 
 .hero__title {
   max-width: 15ch;
-}
-
-.hero__title em {
-  font-style: italic;
-  background: var(--grad-accent);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
 }
 
 .hero__lead {

@@ -169,21 +169,6 @@
     });
   }
 
-  function initDiary() {
-    var range = qs("#trust");
-    var value = qs("#trustValue");
-    if (!range || !value) return;
-
-    function paint() {
-      value.textContent = range.value;
-      var percent = ((range.value - range.min) / (range.max - range.min)) * 100;
-      range.style.background = "linear-gradient(90deg, var(--blue-500) 0%, var(--lilac-500) " + percent + "%, var(--blue-100) " + percent + "%)";
-    }
-
-    range.addEventListener("input", paint);
-    paint();
-  }
-
   function initScrollUi() {
     var progressBar = qs("#readbar");
     var backToTop = qs("#fab");
@@ -217,7 +202,6 @@
     initReveal();
     initTabs("[data-tabs]", ".tabs__btn", ".tabs__panel", "tab");
     initTabs("[data-vtabs]", ".vtabs__btn", ".vtabs__panel", "vtab");
-    initDiary();
     initScrollUi();
     initYear();
   }
