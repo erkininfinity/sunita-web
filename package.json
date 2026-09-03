@@ -2,7 +2,7 @@
   "name": "senergy",
   "version": "1.0.0",
   "private": true,
-  "description": "SENERGY — лендинг 14-дневного марафона закаливания Суниты Таубаевой. Запуск: node server.js",
+  "description": "SENERGY — веб-версия полной программы Суниты Таубаевой. Запуск: node server.js",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
