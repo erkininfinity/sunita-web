@@ -60,7 +60,7 @@
   --container: 1240px;
   --container-narrow: 900px;
   --gutter: clamp(1.25rem, 4vw, 2.5rem);
-  --section-y: clamp(4rem, 8vw, 8.5rem);
+  --section-y: clamp(2.5rem, 4.5vw, 4.5rem);
 
   --r-sm: 10px;
   --r-md: 18px;
@@ -313,7 +313,7 @@ select {
 
 .section__head {
   max-width: 760px;
-  margin-bottom: clamp(2.25rem, 4vw, 3.75rem);
+  margin-bottom: clamp(1.5rem, 3vw, 2.75rem);
   display: grid;
   gap: 1.1rem;
 }

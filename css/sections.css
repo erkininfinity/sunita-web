@@ -201,8 +201,8 @@
 
 .hero {
   position: relative;
-  padding-top: clamp(7rem, 13vw, 10.5rem);
-  padding-bottom: clamp(3.5rem, 7vw, 6rem);
+  padding-top: clamp(5.5rem, 8vw, 7rem);
+  padding-bottom: clamp(2.5rem, 4vw, 4rem);
   background: var(--grad-cold);
   overflow: hidden;
 }
@@ -212,7 +212,7 @@
   z-index: 1;
   display: grid;
   grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
-  gap: clamp(2rem, 5vw, 4.5rem);
+  gap: clamp(1.75rem, 3.5vw, 3rem);
   align-items: center;
 }
 
@@ -224,7 +224,7 @@
 
 .hero__content {
   display: grid;
-  gap: clamp(1.1rem, 2vw, 1.6rem);
+  gap: clamp(0.9rem, 1.5vw, 1.2rem);
   justify-items: start;
 }
 
