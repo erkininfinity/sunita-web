@@ -198,6 +198,27 @@
     var previousFocus = null;
     var closeTimer = null;
     var nameInput = qs('[name="name"]', form);
+    var phoneInput = qs('[name="phone"]', form);
+
+    function formatPhone() {
+      if (!phoneInput) return;
+      var digits = phoneInput.value.replace(/\D/g, "");
+      if (digits.charAt(0) === "7") digits = digits.slice(1);
+      digits = digits.slice(0, 10);
+
+      var formatted = "+7";
+      if (digits.length) formatted += " " + digits.slice(0, 3);
+      if (digits.length > 3) formatted += " " + digits.slice(3, 6);
+      if (digits.length > 6) formatted += " " + digits.slice(6, 10);
+      phoneInput.value = formatted;
+      phoneInput.setCustomValidity(digits.length === 10 ? "" : "Введите 10 цифр после +7");
+    }
+
+    if (phoneInput) {
+      phoneInput.addEventListener("input", formatPhone);
+      phoneInput.addEventListener("focus", formatPhone);
+      formatPhone();
+    }
 
     function openModal(event) {
       if (event) event.preventDefault();
@@ -236,6 +257,7 @@
 
     form.addEventListener("submit", function (event) {
       event.preventDefault();
+      formatPhone();
       if (!form.reportValidity()) return;
 
       var formData = new FormData(form);

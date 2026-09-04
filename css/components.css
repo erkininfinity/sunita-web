@@ -807,6 +807,12 @@ textarea.field__input {
   border-color: #e0524a;
 }
 
+.field__hint {
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: var(--ink-3);
+}
+
 /* --- Registration modal -------------------------------------------------- */
 
 .register-modal[hidden] {
