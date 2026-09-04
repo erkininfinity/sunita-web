@@ -191,6 +191,71 @@
     update();
   }
 
+  function initRegistration() {
+    var modal = qs("#register-modal");
+    var form = qs("#register-form");
+    var triggers = qsa(".js-register");
+    if (!modal || !form || !triggers.length) return;
+
+    var previousFocus = null;
+    var closeTimer = null;
+    var nameInput = qs('[name="name"]', form);
+
+    function openModal(event) {
+      if (event) event.preventDefault();
+      if (closeTimer) window.clearTimeout(closeTimer);
+      previousFocus = document.activeElement;
+      modal.hidden = false;
+      document.body.classList.add("is-locked");
+      window.requestAnimationFrame(function () {
+        modal.classList.add("is-open");
+        if (nameInput) nameInput.focus();
+      });
+    }
+
+    function closeModal() {
+      modal.classList.remove("is-open");
+      document.body.classList.remove("is-locked");
+      closeTimer = window.setTimeout(function () {
+        modal.hidden = true;
+      }, 280);
+      if (previousFocus && typeof previousFocus.focus === "function") {
+        previousFocus.focus();
+      }
+    }
+
+    triggers.forEach(function (trigger) {
+      trigger.addEventListener("click", openModal);
+    });
+
+    qsa("[data-register-close]", modal).forEach(function (button) {
+      button.addEventListener("click", closeModal);
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && !modal.hidden) closeModal();
+    });
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+
+      var formData = new FormData(form);
+      var name = String(formData.get("name") || "").trim();
+      var phone = String(formData.get("phone") || "").trim();
+      var message = [
+        "Здравствуйте! Хочу зарегистрироваться на марафон SENERGY.",
+        "",
+        "Имя: " + name,
+        "Телефон: " + phone
+      ].join("\n");
+      var whatsappUrl = "https://wa.me/77767432828?text=" + encodeURIComponent(message);
+
+      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+      closeModal();
+    });
+  }
+
   function initYear() {
     var year = qs("#year");
     if (year) year.textContent = String(new Date().getFullYear());
@@ -203,6 +268,7 @@
     initTabs("[data-tabs]", ".tabs__btn", ".tabs__panel", "tab");
     initTabs("[data-vtabs]", ".vtabs__btn", ".vtabs__panel", "vtab");
     initScrollUi();
+    initRegistration();
     initYear();
   }
 

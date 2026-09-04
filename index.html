@@ -84,7 +84,9 @@
         <a class="nav__link" href="#part-3">Банный ретрит</a>
         <a class="nav__link" href="#part-4">Личный путь</a>
       </nav>
-      <a class="btn btn--primary btn--sm hdr__cta" href="#part-1-content">Зарегистрироваться</a>
+      <a class="btn btn--primary btn--sm hdr__cta js-register"
+         href="https://wa.me/77767432828?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D1%80%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%BC%D0%B0%D1%80%D0%B0%D1%84%D0%BE%D0%BD%20SENERGY."
+         target="_blank" rel="noopener noreferrer">Зарегистрироваться</a>
       <button class="burger" id="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="drawer">
         <span></span><span></span><span></span>
       </button>
@@ -98,7 +100,9 @@
     <a class="drawer__link" href="#part-3">Банный ретрит</a>
     <a class="drawer__link" href="#part-4">Личный путь</a>
     <div class="drawer__foot">
-      <a class="btn btn--primary btn--block" href="#part-1-content">Зарегистрироваться</a>
+      <a class="btn btn--primary btn--block js-register"
+         href="https://wa.me/77767432828?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D1%80%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%BC%D0%B0%D1%80%D0%B0%D1%84%D0%BE%D0%BD%20SENERGY."
+         target="_blank" rel="noopener noreferrer">Зарегистрироваться</a>
     </div>
   </div>
 
@@ -950,12 +954,13 @@
           <p class="small">Информационно-трансформационный марафон</p>
         </div>
         <div>
-          <div class="footer__title">Части документа</div>
+          <div class="footer__title">Навигация</div>
           <nav class="footer__links" aria-label="Навигация в подвале">
-            <a href="#part-1">1. Полная программа</a>
-            <a href="#part-2">2. 14-дневный марафон</a>
-            <a href="#part-3">3. Банный ритуал</a>
-            <a href="#part-4">4. Личный путь</a>
+            <a href="#part-1">Главная</a>
+            <a href="#part-2">Программа</a>
+            <a href="#seven-fields">Телесные техники</a>
+            <a href="#part-3">Банный ретрит</a>
+            <a href="#part-4">Личный путь</a>
           </nav>
         </div>
       </div>
@@ -966,7 +971,42 @@
     </div>
   </footer>
 
-  <a class="fab fab--top" id="fab" href="#part-1" aria-label="К началу страницы">↑</a>
+  <a class="fab" id="fab"
+     href="https://wa.me/77767432828?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D1%80%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%BC%D0%B0%D1%80%D0%B0%D1%84%D0%BE%D0%BD%20SENERGY."
+     target="_blank" rel="noopener noreferrer" aria-label="Написать в WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M20.5 11.7a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.4-4.3a8.5 8.5 0 1 1 15.6-4.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M8.1 7.8c.3-.5.6-.5.9-.5h.4c.2 0 .4.1.5.4l.8 1.9c.1.3 0 .5-.2.7l-.6.7c-.2.2-.1.4 0 .6.7 1.2 1.7 2.2 3 2.8.2.1.4.1.6-.1l.8-1c.2-.2.4-.3.7-.2l1.9.9c.3.1.4.3.4.5 0 .4-.2 1.3-.8 1.8-.6.6-1.5.9-2.5.6-1.2-.3-3.2-1.1-5-2.8-1.5-1.4-2.5-3.2-2.8-4.4-.3-.9.1-1.5.4-1.9.4-.4.9-.7 1.5 0Z" fill="currentColor"/>
+    </svg>
+    <span class="fab__text">WhatsApp</span>
+  </a>
+
+  <div class="register-modal" id="register-modal" hidden>
+    <button class="register-modal__backdrop" type="button" data-register-close tabindex="-1" aria-label="Закрыть форму"></button>
+    <section class="register-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="register-title">
+      <button class="register-modal__close" type="button" data-register-close aria-label="Закрыть форму">×</button>
+      <span class="eyebrow">Регистрация</span>
+      <h2 class="h2" id="register-title">Запись на марафон SENERGY</h2>
+      <p>Оставьте имя и телефон — мы подготовим сообщение для WhatsApp.</p>
+      <form class="register-form" id="register-form">
+        <label class="field">
+          <span class="field__label">Ваше имя</span>
+          <input class="field__input" type="text" name="name" autocomplete="name" required placeholder="Например, Айгуль">
+        </label>
+        <label class="field">
+          <span class="field__label">Номер телефона</span>
+          <input class="field__input" type="tel" name="phone" autocomplete="tel" inputmode="tel" required minlength="7" pattern="[+0-9 ()-]{7,}" placeholder="+7 777 000 00 00">
+        </label>
+        <button class="btn btn--wa btn--block" type="submit">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.5 11.7a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.4-4.3a8.5 8.5 0 1 1 15.6-4.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M8.1 7.8c.3-.5.6-.5.9-.5h.4c.2 0 .4.1.5.4l.8 1.9c.1.3 0 .5-.2.7l-.6.7c-.2.2-.1.4 0 .6.7 1.2 1.7 2.2 3 2.8.2.1.4.1.6-.1l.8-1c.2-.2.4-.3.7-.2l1.9.9c.3.1.4.3.4.5 0 .4-.2 1.3-.8 1.8-.6.6-1.5.9-2.5.6-1.2-.3-3.2-1.1-5-2.8-1.5-1.4-2.5-3.2-2.8-4.4-.3-.9.1-1.5.4-1.9.4-.4.9-.7 1.5 0Z" fill="currentColor"/>
+          </svg>
+          Продолжить в WhatsApp
+        </button>
+      </form>
+    </section>
+  </div>
   <script src="js/main.js" defer></script>
 </body>
 </html>
