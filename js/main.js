@@ -171,14 +171,12 @@
 
   function initScrollUi() {
     var progressBar = qs("#readbar");
-    var backToTop = qs("#fab");
     var ticking = false;
 
     function update() {
       var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
       var progress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
       if (progressBar) progressBar.style.transform = "scaleX(" + progress + ")";
-      if (backToTop) backToTop.classList.toggle("is-visible", window.scrollY > window.innerHeight * 0.7);
       ticking = false;
     }
 
