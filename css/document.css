@@ -115,6 +115,7 @@ html:not(.js) .reveal {
 
 .hero--document .hero__photo img {
   max-height: 720px;
+  object-position: center top;
 }
 
 .hero__document {
@@ -1136,10 +1137,12 @@ html:not(.js) .tabs__panel + .tabs__panel {
   .hero--document .hero__title {
     width: 100%;
     max-width: 100%;
-    font-size: clamp(2.1rem, 10.5vw, 2.65rem);
-    line-height: 0.94;
-    overflow-wrap: anywhere;
-    hyphens: auto;
+    font-size: clamp(1.9rem, 9.4vw, 2.45rem);
+    line-height: 0.96;
+    letter-spacing: -0.025em;
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: none;
   }
 
   .hero__document {
