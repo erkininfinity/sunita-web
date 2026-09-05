@@ -5,7 +5,27 @@
 (function () {
   "use strict";
 
-  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  /* A refresh always starts from the beginning of the document. */
+  if ("scrollRestoration" in window.history) {
+    window.history.scrollRestoration = "manual";
+  }
+
+  function resetInitialScroll() {
+    var rootStyle = document.documentElement.style;
+    var previousBehavior = rootStyle.scrollBehavior;
+    rootStyle.scrollBehavior = "auto";
+    window.scrollTo(0, 0);
+    if (previousBehavior) rootStyle.scrollBehavior = previousBehavior;
+    else rootStyle.removeProperty("scroll-behavior");
+  }
+
+  resetInitialScroll();
+  window.addEventListener("pageshow", function () {
+    window.requestAnimationFrame(resetInitialScroll);
+  }, { once: true });
+  window.addEventListener("load", function () {
+    window.requestAnimationFrame(resetInitialScroll);
+  }, { once: true });
 
   function qs(selector, root) {
     return (root || document).querySelector(selector);
@@ -87,35 +107,13 @@
     });
   }
 
-  function initReveal() {
-    var items = qsa(".reveal");
-    if (reduceMotion || !("IntersectionObserver" in window)) {
-      items.forEach(function (item) {
-        item.classList.add("is-in");
-      });
-      return;
-    }
-
-    var observer = new IntersectionObserver(function (entries, currentObserver) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add("is-in");
-        currentObserver.unobserve(entry.target);
-      });
-    }, { rootMargin: "0px 0px -10% 0px", threshold: 0.06 });
-
-    items.forEach(function (item) {
-      observer.observe(item);
-    });
-  }
-
   function initTabs(rootSelector, buttonSelector, panelSelector, idPrefix) {
     qsa(rootSelector).forEach(function (root, rootIndex) {
       var buttons = qsa(buttonSelector, root);
       var panels = qsa(panelSelector, root);
       if (!buttons.length || !panels.length) return;
 
-      function select(selectedButton) {
+      function select(selectedButton, animate) {
         var selectedKey = selectedButton.getAttribute("data-tab");
 
         buttons.forEach(function (button) {
@@ -126,7 +124,9 @@
         });
 
         panels.forEach(function (panel) {
-          panel.hidden = panel.getAttribute("data-panel") !== selectedKey;
+          var isActive = panel.getAttribute("data-panel") === selectedKey;
+          panel.hidden = !isActive;
+          if (isActive && animate && window.SenergyMotion) window.SenergyMotion.panel(panel);
         });
       }
 
@@ -147,7 +147,7 @@
         }
 
         button.addEventListener("click", function () {
-          select(button);
+          select(button, true);
         });
 
         button.addEventListener("keydown", function (event) {
@@ -158,7 +158,7 @@
 
           event.preventDefault();
           var nextButton = buttons[(index + direction + buttons.length) % buttons.length];
-          select(nextButton);
+          select(nextButton, true);
           nextButton.focus();
         });
       });
@@ -237,7 +237,7 @@
       document.body.classList.remove("is-locked");
       closeTimer = window.setTimeout(function () {
         modal.hidden = true;
-      }, 280);
+      }, window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 280);
       if (previousFocus && typeof previousFocus.focus === "function") {
         previousFocus.focus();
       }
@@ -284,7 +284,6 @@
   function boot() {
     initHeader();
     initActiveNav();
-    initReveal();
     initTabs("[data-tabs]", ".tabs__btn", ".tabs__panel", "tab");
     initTabs("[data-vtabs]", ".vtabs__btn", ".vtabs__panel", "vtab");
     initScrollUi();

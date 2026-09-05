@@ -22,7 +22,14 @@
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/sections.css">
   <link rel="stylesheet" href="css/document.css">
-  <script>document.documentElement.classList.add("js");</script>
+  <link rel="stylesheet" href="css/motion.css">
+  <script>
+    document.documentElement.classList.add("js");
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    document.documentElement.style.scrollBehavior = "auto";
+    scrollTo(0, 0);
+    document.documentElement.style.removeProperty("scroll-behavior");
+  </script>
 
   <script type="application/ld+json">
   {
@@ -62,6 +69,7 @@
       <g id="i-hand" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 11V5a1.5 1.5 0 0 1 3 0v5M11 10V4a1.5 1.5 0 0 1 3 0v6M14 10V6a1.5 1.5 0 0 1 3 0v8a7 7 0 0 1-7 7 7 7 0 0 1-7-7v-2a1.5 1.5 0 0 1 3-1.3"/></g>
       <g id="i-steam" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M8 3c-1 1.5-1 3 0 4.5S9 10.5 8 12M12 2c-1 1.7-1 3.4 0 5s1 3.3 0 5M16 3c-1 1.5-1 3 0 4.5s1 3 0 4.5M4 15h16M5 18h14M7 21h10"/></g>
       <g id="i-clock" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.2l3.2 2"/></g>
+      <g id="i-wallet" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7a3 3 0 0 1 3-3h11a2 2 0 0 1 2 2v12H7a3 3 0 0 1-3-3V7Z"/><path d="M4 8h16M15 11h6v4h-6a2 2 0 1 1 0-4Z"/><circle cx="16" cy="13" r=".5" fill="currentColor" stroke="none"/></g>
       <g id="i-alert" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 2.7 19.5h18.6L12 3.5Z"/><path d="M12 9.5v4.2M12 17h.01"/></g>
       <g id="i-compass" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2.1 4.9-4.9 2.1 2.1-4.9 4.9-2.1Z"/></g>
       <g id="i-chev" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></g>
@@ -81,7 +89,7 @@
         <a class="nav__link" href="#part-1">Главная</a>
         <a class="nav__link" href="#part-2">Программа</a>
         <a class="nav__link" href="#seven-fields">Телесные техники</a>
-        <a class="nav__link" href="#part-3">Банный ретрит</a>
+        <a class="nav__link" href="#part-3">Банный Ритуал</a>
         <a class="nav__link" href="#part-4">Личный путь</a>
       </nav>
       <a class="btn btn--primary btn--sm hdr__cta js-register"
@@ -97,7 +105,7 @@
     <a class="drawer__link" href="#part-1">Главная</a>
     <a class="drawer__link" href="#part-2">Программа</a>
     <a class="drawer__link" href="#seven-fields">Телесные техники</a>
-    <a class="drawer__link" href="#part-3">Банный ретрит</a>
+    <a class="drawer__link" href="#part-3">Банный Ритуал</a>
     <a class="drawer__link" href="#part-4">Личный путь</a>
     <div class="drawer__foot">
       <a class="btn btn--primary btn--block js-register"
@@ -112,21 +120,25 @@
       <div class="container">
         <div class="hero__grid">
           <div class="hero__content">
-            <h1 class="display hero__title reveal" id="part-1-title" style="--reveal-delay:.08s">
+            <h1 class="display hero__title" data-enter id="part-1-title">
               Информационно-трансформационный марафон
             </h1>
-            <p class="lead hero__lead reveal" style="--reveal-delay:.16s">
+            <p class="lead hero__lead" data-enter>
               Данная программа основана на глубоком опыте Суниты Таубаевой, объединяя физическое закаливание с трансформационными техниками, телесной работой и питанием для комплексной перезагрузки организма и сознания.
             </p>
-            <div class="chips reveal" style="--reveal-delay:.24s">
+            <div class="chips" data-enter>
               <span class="chip"><span class="chip__dot"></span>14 дней</span>
               <span class="chip"><span class="chip__dot"></span>Групповое сопровождение</span>
               <span class="chip"><span class="chip__dot"></span>Телесная работа</span>
               <span class="chip"><span class="chip__dot"></span>Питание и банный ритуал</span>
             </div>
+            <div class="hero__price" data-enter role="group" aria-label="Стоимость участия — 96 000 тенге">
+              <span class="hero__price-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-wallet"/></svg></span>
+              <span class="hero__price-copy">Стоимость: <strong>96 000 тенге</strong></span>
+            </div>
           </div>
 
-          <div class="hero__media reveal reveal--zoom" style="--reveal-delay:.2s">
+          <div class="hero__media" data-enter>
             <figure class="hero__photo">
               <img src="assets/img/sunita-800.webp"
                    srcset="assets/img/sunita-520.webp 520w, assets/img/sunita-800.webp 800w, assets/img/sunita-1200.webp 1200w"
@@ -142,31 +154,31 @@
         </div>
 
         <div class="hero__document" id="part-1-content">
-          <div class="section__head reveal">
+          <div class="section__head" data-enter>
             <span class="eyebrow">Ключевые элементы программы</span>
             <h2 class="h2">«Плюшки» марафона</h2>
           </div>
 
           <div class="grid grid-4 program-cards">
-            <article class="card card--glass card--hover reveal">
+            <article class="card card--glass card--hover" data-enter>
               <span class="card__topline"></span>
               <span class="itile"><svg viewBox="0 0 24 24"><use href="#i-users"/></svg></span>
               <h3 class="card__title">14-дневное групповое сопровождение</h3>
               <p class="card__text">Постоянная поддержка, настройка мышления и контроль выполнения ежедневных задач.</p>
             </article>
-            <article class="card card--glass card--hover reveal" style="--reveal-delay:.05s">
+            <article class="card card--glass card--hover" data-enter>
               <span class="card__topline"></span>
               <span class="itile itile--lilac"><svg viewBox="0 0 24 24"><use href="#i-hand"/></svg></span>
               <h3 class="card__title">Телесная терапия и массаж</h3>
               <p class="card__text">Интеграция профессиональных техник массажа для снятия глубоких мышечных зажимов и улучшения лимфодренажа в сочетании с закаливанием.</p>
             </article>
-            <article class="card card--glass card--hover reveal" style="--reveal-delay:.1s">
+            <article class="card card--glass card--hover" data-enter>
               <span class="card__topline"></span>
               <span class="itile itile--green"><svg viewBox="0 0 24 24"><use href="#i-leaf"/></svg></span>
               <h3 class="card__title">Сет правильного питания (ПП)</h3>
               <p class="card__text">Специально разработанный план питания, поддерживающий термогенез и обеспечивающий организм ресурсом без воспалительной нагрузки.</p>
             </article>
-            <article class="card card--glass card--hover reveal" style="--reveal-delay:.15s">
+            <article class="card card--glass card--hover" data-enter>
               <span class="card__topline"></span>
               <span class="itile"><svg viewBox="0 0 24 24"><use href="#i-steam"/></svg></span>
               <h3 class="card__title">Банный ритуал</h3>
@@ -174,7 +186,7 @@
             </article>
           </div>
 
-          <details class="doc-details doc-details--feature reveal">
+          <details class="doc-details doc-details--feature" data-enter>
             <summary>
               <span class="doc-details__num">01</span>
               <span class="doc-details__heading">
@@ -188,12 +200,12 @@
             </div>
           </details>
 
-          <div class="part-subhead reveal">
+          <div class="part-subhead" data-enter>
             <span class="eyebrow">Структура реализации</span>
             <h2 class="h2">Три последовательных этапа</h2>
             <p class="stage-legend">Этап · Фокус внимания · Инструменты</p>
           </div>
-          <div class="stages reveal">
+          <div class="stages" data-enter>
             <article class="stage">
               <span class="stage__dot">1</span>
               <h3 class="h4">Подготовительный</h3>
@@ -214,7 +226,7 @@
             </article>
           </div>
 
-          <blockquote class="quote hero__closing reveal">
+          <blockquote class="quote hero__closing" data-enter>
             Данная система позволяет выйти за пределы стандартного «здоровья» и достичь состояния, при котором физическая закалка становится фундаментом для личностной трансформации.
           </blockquote>
         </div>
@@ -222,38 +234,38 @@
     </section>
     <section class="section section--paper chapter-section" id="part-2" aria-labelledby="part-2-title">
       <div class="container">
-        <header class="chapter-head reveal">
+        <header class="chapter-head" data-enter>
           <h2 class="h1" id="part-2-title">14-дневный марафон мягкого входа в закаливание</h2>
         </header>
 
         <div class="split split--top part-intro">
-          <div class="stack reveal">
+          <div class="stack" data-enter>
             <span class="eyebrow">Философия подхода</span>
             <p class="lead">Данная методика была разработана для постепенного и комфортного вхождения в практику закаливания, сочетая физическое воздействие с ментальной перестройкой. Система направлена не только на укрепление тела, но и на снятие психологических барьеров.</p>
           </div>
-          <aside class="card card--glass reveal" style="--reveal-delay:.08s">
+          <aside class="card card--glass" data-enter aria-labelledby="part-2-comfort-title">
             <span class="itile"><svg viewBox="0 0 24 24"><use href="#i-shield"/></svg></span>
-            <h3 class="card__title">Постепенный и комфортный вход</h3>
+            <h3 class="card__title" id="part-2-comfort-title">Постепенный и комфортный вход</h3>
             <p class="card__text">Физическое воздействие соединяется с ментальной перестройкой и работой с психологическими барьерами.</p>
           </aside>
         </div>
 
-        <div class="part-subhead reveal">
+        <div class="part-subhead" data-enter>
           <span class="eyebrow">Научно-телесная база</span>
           <h3 class="h2">Основа методики</h3>
         </div>
         <div class="grid grid-3 science-grid">
-          <article class="card reveal">
+          <article class="card" data-enter>
             <span class="itile"><svg viewBox="0 0 24 24"><use href="#i-brain"/></svg></span>
             <h4 class="card__title">Психология и нейропластичность</h4>
             <p class="card__text">Использование мягкого входа позволяет обмануть реакцию «бей или беги», превращая стресс от холода в полезный гормезис.</p>
           </article>
-          <article class="card reveal" style="--reveal-delay:.05s">
+          <article class="card" data-enter>
             <span class="itile itile--green"><svg viewBox="0 0 24 24"><use href="#i-wind"/></svg></span>
             <h4 class="card__title">Дыхание и сосуды</h4>
             <p class="card__text">Глубокое дыхание и задержки меняют pH крови и повышают уровень CO₂, что действует как природный вазодилататор, улучшая кровоснабжение конечностей и слизистых.</p>
           </article>
-          <article class="card reveal" style="--reveal-delay:.1s">
+          <article class="card" data-enter>
             <span class="itile itile--lilac"><svg viewBox="0 0 24 24"><use href="#i-bolt"/></svg></span>
             <h4 class="card__title">Энергетические разблоки</h4>
             <ul class="blist">
@@ -261,32 +273,32 @@
               <li><strong>Простукивание копчиком:</strong> стимулирует крестцовое сплетение для активации циркуляции энергии.</li>
             </ul>
           </article>
-          <article class="card reveal">
+          <article class="card" data-enter>
             <span class="itile"><svg viewBox="0 0 24 24"><use href="#i-drop"/></svg></span>
             <h4 class="card__title">Терморегуляция</h4>
             <p class="card__text">Горячая вода и ванночки для ног помогают гармонизировать состояние после холода, снимая спазмы.</p>
           </article>
-          <article class="card reveal" style="--reveal-delay:.05s">
+          <article class="card" data-enter>
             <span class="itile itile--green"><svg viewBox="0 0 24 24"><use href="#i-leaf"/></svg></span>
             <h4 class="card__title">Контроль питания</h4>
             <p class="card__text">Сбалансированный рацион по пищевой пирамиде обеспечивает необходимый ресурс для термогенеза.</p>
           </article>
         </div>
 
-        <div class="part-subhead reveal" id="days">
+        <div class="part-subhead" data-enter id="days">
           <span class="eyebrow">План марафона</span>
           <h3 class="h2">Утро и вечер каждого дня</h3>
         </div>
 
-        <div class="days__rules reveal" aria-label="Общие правила утренней программы">
+        <div class="days__rules" data-enter role="group" aria-label="Общие правила утренней программы">
           <div class="days__rule"><b>20–22 °C</b><span>температура в комнате</span></div>
           <div class="days__rule"><b>Воздух</b><span>проветривание</span></div>
           <div class="days__rule"><b>Горячая вода</b><span>утром</span></div>
           <div class="days__rule"><b>30 мл / кг</b><span>водный баланс</span></div>
         </div>
-        <p class="source-note reveal"><strong>Примечание:</strong> во всех утренних программах — комната 20–22 °C, проветривание, горячая вода, сбалансированный завтрак. Водный баланс — 30 мл на 1 кг веса.</p>
+        <p class="source-note" data-enter><strong>Примечание:</strong> во всех утренних программах — комната 20–22 °C, проветривание, горячая вода, сбалансированный завтрак. Водный баланс — 30 мл на 1 кг веса.</p>
 
-        <div class="tabs document-tabs reveal" data-tabs>
+        <div class="tabs document-tabs" data-enter data-tabs>
           <div class="tabs__list" role="tablist" aria-label="Недели марафона">
             <button class="tabs__btn is-active" type="button" role="tab" aria-selected="true" data-tab="week-1">Неделя 1</button>
             <button class="tabs__btn" type="button" role="tab" aria-selected="false" data-tab="week-2">Неделя 2</button>
@@ -400,19 +412,19 @@
     </section>
     <section class="section method-section" id="author-method" aria-labelledby="author-method-title">
       <div class="container">
-        <div class="section__head reveal">
+        <div class="section__head" data-enter>
           <span class="eyebrow">Авторский материал</span>
           <h2 class="h1" id="author-method-title">Закаливание: авторская методика Суниты Таубаевой</h2>
           <p class="lead">Закаливание — это тренировка систем организма, направленная на их подготовку к быстрой и своевременной реакции на внешние факторы. Любой контролируемый стрессор может выступать в роли закаливающего фактора.</p>
           <p>Эволюционно это было важнейшим условием выживания, однако современные комфортные условия жизни привели к тому, что наши естественные защитные механизмы стали менее гибкими.</p>
         </div>
 
-        <div class="part-subhead reveal">
+        <div class="part-subhead" data-enter>
           <span class="eyebrow">Преимущества закаливания</span>
           <h3 class="h2">Комплексное укрепление организма</h3>
           <p>Закаливание способствует комплексному укреплению организма, помогая предупредить заболевания:</p>
         </div>
-        <div class="plist benefit-list reveal">
+        <div class="plist benefit-list" data-enter>
           <div class="plist__item"><span class="plist__num">01</span><h4 class="h4">Улучшение кровообращения</h4></div>
           <div class="plist__item"><span class="plist__num">02</span><h4 class="h4">Нормализация обмена веществ</h4></div>
           <div class="plist__item"><span class="plist__num">03</span><h4 class="h4">Повышение физической работоспособности</h4></div>
@@ -421,7 +433,7 @@
           <div class="plist__item"><span class="plist__num">06</span><h4 class="h4">Существенное снижение числа простудных заболеваний</h4></div>
         </div>
 
-        <div class="details-stack reveal">
+        <div class="details-stack" data-enter>
           <details class="doc-details">
             <summary>
               <span class="doc-details__num">01</span>
@@ -500,34 +512,34 @@
     <section class="section section--deep cold-gold" id="cold-gold" aria-labelledby="cold-gold-title">
       <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
       <div class="container">
-        <div class="section__head reveal">
+        <div class="section__head" data-enter>
           <span class="eyebrow">Полная программа закаливания</span>
           <h2 class="h1" id="cold-gold-title">Cold Gold</h2>
           <p class="lead">Программа поможет сделать первые шаги к качественной жизни.</p>
         </div>
 
         <div class="grid grid-2 cold-gold__intro">
-          <article class="card card--glass reveal"><h3 class="h3">Природная защита</h3><p>Закаливание тренирует организм и возвращает природную защиту.</p></article>
-          <article class="card card--glass reveal" style="--reveal-delay:.06s"><h3 class="h3">Клеточное питание</h3><p>Клеточное питание — фундамент здоровья. Правильные нутриенты обеспечивают синтез АТФ, обновление тканей и иммунную устойчивость.</p></article>
+          <article class="card card--glass" data-enter><h3 class="h3">Природная защита</h3><p>Закаливание тренирует организм и возвращает природную защиту.</p></article>
+          <article class="card card--glass" data-enter><h3 class="h3">Клеточное питание</h3><p>Клеточное питание — фундамент здоровья. Правильные нутриенты обеспечивают синтез АТФ, обновление тканей и иммунную устойчивость.</p></article>
         </div>
 
-        <div class="part-subhead reveal">
+        <div class="part-subhead" data-enter>
           <span class="eyebrow">Четыре техники</span>
           <h3 class="h2">Практическая основа</h3>
         </div>
         <div class="grid grid-4 cold-practices">
-          <article class="card card--glass reveal"><span class="itile"><svg viewBox="0 0 24 24"><use href="#i-wind"/></svg></span><h4 class="card__title">Дыхательная техника</h4><p>Глубокие ритмичные вдохи и выдохи — гипервентиляция — с последующей задержкой дыхания. Это насыщает кровь кислородом и повышает pH.</p></article>
-          <article class="card card--glass reveal" style="--reveal-delay:.05s"><span class="itile itile--lilac"><svg viewBox="0 0 24 24"><use href="#i-drop"/></svg></span><h4 class="card__title">Контрастный душ</h4><p>Чередование температур для тренировки сосудистого русла и терморегуляции.</p></article>
-          <article class="card card--glass reveal" style="--reveal-delay:.1s"><span class="itile itile--green"><svg viewBox="0 0 24 24"><use href="#i-sun"/></svg></span><h4 class="card__title">Воздушные ванны</h4><p>Постепенное приучение кожи к температурным перепадам.</p></article>
-          <article class="card card--glass reveal" style="--reveal-delay:.15s"><span class="itile"><svg viewBox="0 0 24 24"><use href="#i-snow"/></svg></span><h4 class="card__title">Заземление</h4><p>Ходьба босиком, включая снег, для стимуляции рецепторов стоп.</p></article>
+          <article class="card card--glass" data-enter><span class="itile"><svg viewBox="0 0 24 24"><use href="#i-wind"/></svg></span><h4 class="card__title">Дыхательная техника</h4><p>Глубокие ритмичные вдохи и выдохи — гипервентиляция — с последующей задержкой дыхания. Это насыщает кровь кислородом и повышает pH.</p></article>
+          <article class="card card--glass" data-enter><span class="itile itile--lilac"><svg viewBox="0 0 24 24"><use href="#i-drop"/></svg></span><h4 class="card__title">Контрастный душ</h4><p>Чередование температур для тренировки сосудистого русла и терморегуляции.</p></article>
+          <article class="card card--glass" data-enter><span class="itile itile--green"><svg viewBox="0 0 24 24"><use href="#i-sun"/></svg></span><h4 class="card__title">Воздушные ванны</h4><p>Постепенное приучение кожи к температурным перепадам.</p></article>
+          <article class="card card--glass" data-enter><span class="itile"><svg viewBox="0 0 24 24"><use href="#i-snow"/></svg></span><h4 class="card__title">Заземление</h4><p>Ходьба босиком, включая снег, для стимуляции рецепторов стоп.</p></article>
         </div>
 
-        <div class="alert alert--deep reveal" role="note">
+        <div class="alert alert--deep" data-enter role="note">
           <span class="alert__icon"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg></span>
           <div><h3 class="h4">Безопасность</h3><p>Консультация врача обязательна при сердечно-сосудистых патологиях или эпилепсии. Закаливание — это контролируемый стресс.</p></div>
         </div>
 
-        <div class="details-stack details-stack--deep reveal">
+        <div class="details-stack details-stack--deep" data-enter>
           <details class="doc-details doc-details--deep">
             <summary><span class="doc-details__num">∞</span><span class="doc-details__heading"><strong>Авторский взгляд на энергетический аспект</strong><small>Физическое поле, внутренняя стабильность и заряд</small></span><span class="doc-details__chev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
             <div class="doc-details__body prose">
@@ -541,17 +553,17 @@
     <section class="section section--lilac" id="seven-fields" aria-labelledby="seven-fields-title">
       <div class="container">
         <div class="feature-intro feature-intro--light">
-          <div class="section__head reveal">
+          <div class="section__head" data-enter>
             <span class="eyebrow">Телесные практики</span>
             <h2 class="h1" id="seven-fields-title">Ценность массажа и телесных практик для 7 полей целостности человека</h2>
             <p class="lead">Массаж и телесные практики — это мощный инструмент комплексной трансформации, охватывающий все уровни человеческой целостности: физический, эмоциональный, ментальный, энергетический, социальный, родовой и духовный. Ниже приведена детальная структура ценности и видов практик для каждого поля.</p>
           </div>
-          <figure class="feature-intro__media reveal" style="--reveal-delay:.08s">
+          <figure class="feature-intro__media" data-enter>
             <img src="assets/img/sunita-massage.webp" alt="Сунита Таубаева в кабинете телесных практик" width="864" height="1536" loading="lazy" decoding="async">
           </figure>
         </div>
 
-        <div class="vtabs reveal" data-vtabs>
+        <div class="vtabs" data-enter data-vtabs>
           <div class="vtabs__list" role="tablist" aria-label="Семь полей целостности">
             <button class="vtabs__btn is-active" type="button" role="tab" aria-selected="true" data-tab="field-1"><span class="num">1</span>Физическое</button>
             <button class="vtabs__btn" type="button" role="tab" aria-selected="false" data-tab="field-2"><span class="num">2</span>Эмоциональное</button>
@@ -646,13 +658,13 @@
 
     <section class="section section--paper" id="tracker" aria-labelledby="tracker-title">
       <div class="container">
-        <div class="section__head reveal">
+        <div class="section__head" data-enter>
           <span class="eyebrow">14-дневный марафон</span>
           <h2 class="h1" id="tracker-title">Трекер самонаблюдения и привычек</h2>
           <p class="lead">Данный документ представляет собой структурированную программу для работы с телом и сознанием, сфокусированную на адаптации к температурным изменениям и преодолении психологических блоков.</p>
         </div>
 
-        <div class="details-stack reveal">
+        <div class="details-stack" data-enter>
           <details class="doc-details">
             <summary><span class="doc-details__num">14</span><span class="doc-details__heading"><strong>Общий план программы</strong><small>Фокус каждого дня</small></span><span class="doc-details__chev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
             <div class="doc-details__body">
@@ -702,7 +714,7 @@
           </details>
         </div>
 
-        <aside class="diary-card reveal" aria-labelledby="diary-title">
+        <aside class="diary-card" data-enter aria-labelledby="diary-title">
           <div class="diary-card__intro"><span class="eyebrow">Пример вопросов</span><h3 class="h2" id="diary-title">Дневник самонаблюдения</h3><p>Для каждого дня предусмотрены вопросы, помогающие отслеживать прогресс:</p></div>
           <ol class="diary-questions">
             <li><span>01</span>Какую первую отговорку придумал ум?</li>
@@ -714,40 +726,15 @@
       </div>
     </section>
 
-    <section class="section mastermind-section" id="mastermind" aria-labelledby="mastermind-title">
-      <div class="container">
-        <details class="doc-details doc-details--mastermind reveal">
-          <summary>
-            <span class="doc-details__num"><svg viewBox="0 0 24 24"><use href="#i-brain"/></svg></span>
-            <span class="doc-details__heading"><strong id="mastermind-title">Сценарий мастермайнда: «Взлом сопротивления: где ум обманывает тело»</strong><small>Цель встречи · 45–60 минут</small></span>
-            <span class="doc-details__chev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span>
-          </summary>
-          <div class="doc-details__body">
-            <div class="prose prose--wide">
-              <p>Данный мастермайнд предназначен для проведения в середине марафона, когда участники сталкиваются с пиком сопротивления ума и физическим саботажем.</p>
-              <p><strong>Цель мастермайнда:</strong> разобрать текущие кризисы участников, снять ментальные блоки и пересобрать фокус на вторую половину марафона.</p>
-            </div>
-            <div class="mastermind-steps">
-              <article><span>01</span><div><h3 class="h4">Вводная настройка · 5–7 минут</h3><p>Ведущий создаёт атмосферу безопасности. Участники делают глубокий вдох и выдох.</p><p><strong>Формат:</strong> каждый участник по кругу за 1 минуту называет свой главный «затык» на текущем этапе: «Мой главный затык сейчас — это…».</p></div></article>
-              <article><span>02</span><div><h3 class="h4">Точечный разбор кейсов · 30 минут</h3><p>Выбор 2–3 наиболее ярких и показательных запросов от участников.</p><p><strong>Механика разбора:</strong> ведущий помогает участнику увидеть за физическим сопротивлением скрытую психологическую выгоду или ограничивающую установку.</p><p><strong>Пример подхода:</strong> перевод фокуса с борьбы с мыслями на безоговорочное выполнение протокола — авторский алгоритм без «права на дискуссию» с умом.</p></div></article>
-              <article><span>03</span><div><h3 class="h4">Групповой резонанс · 10 минут</h3><p>Ведущий просит участников, узнавших себя в озвученных проблемах, дать знак.</p><p><strong>Эффект:</strong> осознание того, что страхи и саботаж — это общая механика психики, снимает чувство вины и даёт ресурс через поддержку группы.</p></div></article>
-              <article><span>04</span><div><h3 class="h4">Финальный фокус и якорение · 5 минут</h3><p>Участники фиксируют для себя два пункта:</p><ul class="blist"><li>Одно действие, которое они перестают делать — прекращение «торгов» с собой.</li><li>Одно действие, которое они внедряют безусловно.</li></ul><p>Завершение встречи короткой дыхательной настройкой.</p></div></article>
-            </div>
-            <blockquote class="quote">«Марафон — это не про борьбу с холодом, а про трансформацию отношений с собственным умом.»</blockquote>
-          </div>
-        </details>
-      </div>
-    </section>
-
     <section class="section section--cold clothing-section" id="clothing" aria-labelledby="clothing-title">
       <div class="container">
-        <div class="section__head reveal">
+        <div class="section__head" data-enter>
           <span class="eyebrow">Круглогодичный гид</span>
           <h2 class="h1" id="clothing-title">Рекомендации по выбору одежды для Астаны</h2>
           <p class="lead">Для условий резко континентального климата Астаны и помещений с витражным остеклением ключевым является принцип многослойности. Это позволяет регулировать температуру тела, предотвращая перегрев в нагретых солнцем помещениях и сохраняя тепло на улице.</p>
         </div>
 
-        <div class="tabs clothing-tabs reveal" data-tabs>
+        <div class="tabs clothing-tabs" data-enter data-tabs>
           <div class="tabs__list" role="tablist" aria-label="Сезоны">
             <button class="tabs__btn is-active" type="button" role="tab" aria-selected="true" data-tab="winter">Зима</button>
             <button class="tabs__btn" type="button" role="tab" aria-selected="false" data-tab="midseason">Весна / осень</button>
@@ -770,12 +757,12 @@
           </article>
         </div>
 
-        <div class="part-subhead reveal"><span class="eyebrow">Температурный баланс</span><h3 class="h2">Главные правила температурного баланса</h3></div>
+        <div class="part-subhead" data-enter><span class="eyebrow">Температурный баланс</span><h3 class="h2">Главные правила температурного баланса</h3></div>
         <div class="grid grid-4 balance-rules">
-          <article class="card reveal"><span class="num">1</span><h4 class="card__title">Принцип многослойности</h4><p>Зимой и в демисезон используйте слои, которые легко снять. Надевание плотного шерстяного свитера непосредственно на голое тело часто ведёт к перегреву.</p></article>
-          <article class="card reveal" style="--reveal-delay:.05s"><span class="num num--lilac">2</span><h4 class="card__title">Выбор термобелья</h4><p>Для помещений выбирайте тонкую мериновую шерсть или хлопок. Спортивная синтетика в помещении может создать «парниковый эффект».</p></article>
-          <article class="card reveal" style="--reveal-delay:.1s"><span class="num num--green">3</span><h4 class="card__title">Сменная обувь</h4><p>Перегрев организма часто начинается со стоп. Обязательно переобувайтесь в помещении в лёгкую обувь.</p></article>
-          <article class="card reveal" style="--reveal-delay:.15s"><span class="num">4</span><h4 class="card__title">Вентиляция летом</h4><p>В закрытых витражных пространствах важна свободная, струящаяся одежда, не прилегающая к телу, чтобы обеспечить циркуляцию воздуха.</p></article>
+          <article class="card" data-enter><span class="num">1</span><h4 class="card__title">Принцип многослойности</h4><p>Зимой и в демисезон используйте слои, которые легко снять. Надевание плотного шерстяного свитера непосредственно на голое тело часто ведёт к перегреву.</p></article>
+          <article class="card" data-enter><span class="num num--lilac">2</span><h4 class="card__title">Выбор термобелья</h4><p>Для помещений выбирайте тонкую мериновую шерсть или хлопок. Спортивная синтетика в помещении может создать «парниковый эффект».</p></article>
+          <article class="card" data-enter><span class="num num--green">3</span><h4 class="card__title">Сменная обувь</h4><p>Перегрев организма часто начинается со стоп. Обязательно переобувайтесь в помещении в лёгкую обувь.</p></article>
+          <article class="card" data-enter><span class="num">4</span><h4 class="card__title">Вентиляция летом</h4><p>В закрытых витражных пространствах важна свободная, струящаяся одежда, не прилегающая к телу, чтобы обеспечить циркуляцию воздуха.</p></article>
         </div>
       </div>
     </section>
@@ -783,20 +770,20 @@
       <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
       <div class="container">
         <div class="feature-intro feature-intro--dark">
-          <header class="chapter-head reveal">
+          <header class="chapter-head" data-enter>
             <h2 class="h1" id="part-3-title">Банный ритуал: глубокое погружение и арома-трансформация</h2>
             <p class="lead">Банный ритуал — это не просто процедура очищения, а кульминация вашего 14-дневного марафона. Это пространство, где физическое закаливание встречается с глубоким релаксом, а ароматерапия становится ключом к внутренней тишине.</p>
           </header>
-          <figure class="feature-intro__media reveal" style="--reveal-delay:.08s">
+          <figure class="feature-intro__media" data-enter>
             <img src="assets/img/sunita-bath.webp" alt="Сунита Таубаева в бане с веником" width="864" height="1536" loading="lazy" decoding="async">
           </figure>
         </div>
 
-        <div class="part-subhead reveal">
+        <div class="part-subhead" data-enter>
           <span class="eyebrow">Основные этапы</span>
           <h3 class="h2">Пять шагов «вкусного» ритуала</h3>
         </div>
-        <div class="ritual-steps reveal">
+        <div class="ritual-steps" data-enter>
           <article class="ritual-step">
             <span class="ritual-step__num">01</span>
             <div><span class="ritual-step__phase">Вход</span><h3 class="h3">Ароматическая настройка</h3><p>Перед входом в парную — создание ольфакторного «кокона». Использование авторских композиций ароматов, которые мягко воздействуют на лимбическую систему, помогая отпустить контроль и подготовить тело к тепловому воздействию.</p></div>
@@ -819,17 +806,17 @@
           </article>
         </div>
 
-        <blockquote class="quote ritual-quote reveal">«Баня — это время, когда ум замолкает, а тело начинает говорить. Это идеальное завершение вашего пути к новому себе.»</blockquote>
+        <blockquote class="quote ritual-quote" data-enter>«Баня — это время, когда ум замолкает, а тело начинает говорить. Это идеальное завершение вашего пути к новому себе.»</blockquote>
       </div>
     </section>
     <section class="section author-journey chapter-section" id="part-4" aria-labelledby="part-4-title">
       <div class="container">
-        <header class="chapter-head reveal">
+        <header class="chapter-head" data-enter>
           <span class="eyebrow">Рассказ автора</span>
           <h2 class="h1" id="part-4-title">Личный путь к здоровью и естественному оздоровлению</h2>
         </header>
 
-        <div class="author-lead reveal">
+        <div class="author-lead" data-enter>
           <div class="prose prose--large">
             <p>Меня зовут Сунита Таубаева, мне 44 года. В 2010 году я родила своего первого сыночка — Бека. Он родился недоношенным: у него совершенно не было сил в мышцах, он даже не мог самостоятельно сосать, был очень слабеньким. На его коже оставались следы, похожие на последствия ожогов — верхний слой кожи сформировался ещё не до конца, плюс был маленький вес и мягкая голова.</p>
             <p>Но этот момент меня совсем не испугал. Напротив, движимая глубокой материнской любовью, я решила детально разобраться в том, как устроен организм, и понять, как я могу помочь своему ребёнку, ведь его хрупкое тело было в моих руках.</p>
@@ -838,7 +825,7 @@
         </div>
 
         <div class="details-stack journey-details">
-          <details class="doc-details reveal">
+          <details class="doc-details" data-enter>
             <summary><span class="doc-details__num"><svg viewBox="0 0 24 24"><use href="#i-book"/></svg></span><span class="doc-details__heading"><strong>Захарий Фирсов: «Плавать раньше, чем ходить»</strong><small>Пять положений, с которых началось изучение</small></span><span class="doc-details__chev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
             <div class="doc-details__body prose prose--wide">
               <p>Именно тогда я погрузилась в изучение литературы. Первым источником, который я для себя выбрала, стала книга Захария Павловича Фирсова «Плавать раньше, чем ходить». Вот о чём говорится в этой работе:</p>
@@ -852,7 +839,7 @@
             </div>
           </details>
 
-          <details class="doc-details reveal">
+          <details class="doc-details" data-enter>
             <summary><span class="doc-details__num"><svg viewBox="0 0 24 24"><use href="#i-leaf"/></svg></span><span class="doc-details__heading"><strong>Природная чистота тела и путь к осознанному здоровью</strong><small>Детское тело, взрослая жизнь, стресс и привычки</small></span><span class="doc-details__chev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
             <div class="doc-details__body prose prose--wide">
               <p>Как человек, который много лет отдал работе с детьми и на собственном опыте — через воспитание сына Бека, родившегося семимесячным, — прошёл путь глубокого изучения закаливания, Авиценны и принципов естественного оздоровления, я часто вижу одну и ту же поразительную картину.</p>
@@ -863,7 +850,7 @@
             </div>
           </details>
 
-          <details class="doc-details reveal">
+          <details class="doc-details" data-enter>
             <summary><span class="doc-details__num"><svg viewBox="0 0 24 24"><use href="#i-shield"/></svg></span><span class="doc-details__heading"><strong>Педагогика закаливания</strong><small>Адаптация, безопасность, дыхание и целостный подход</small></span><span class="doc-details__chev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
             <div class="doc-details__body">
               <div class="prose prose--wide">
@@ -881,7 +868,7 @@
             </div>
           </details>
 
-          <details class="doc-details reveal">
+          <details class="doc-details" data-enter>
             <summary><span class="doc-details__num"><svg viewBox="0 0 24 24"><use href="#i-heart"/></svg></span><span class="doc-details__heading"><strong>Мой путь к пониманию организма</strong><small>От возвращения к жизни — к педагогике собственного тела</small></span><span class="doc-details__chev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
             <div class="doc-details__body prose prose--wide">
               <p>Мой путь к пониманию организма не был академической прогулкой — это был путь возвращения к жизни. Моё здоровье было подорвано ещё в младенчестве: пока мама была в Москве в больнице и ухаживала за моей старшей сестрой, я оставалась на воспитании у родственников. Из-за отсутствия грудного вскармливания и раннего перехода на коровье молоко мой несформировавшийся желудок был буквально надорван. Тяжелейшая нагрузка легла на печень и весь желудочно-кишечный тракт, и в итоге я оказалась в реанимации.</p>
@@ -899,7 +886,7 @@
             </div>
           </details>
 
-          <details class="doc-details doc-details--resilience reveal">
+          <details class="doc-details doc-details--resilience" data-enter>
             <summary><span class="doc-details__num" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-compass"/></svg></span><span class="doc-details__heading"><strong>Путь к устойчивости: мои принципы закаливания и работы с телом</strong><small>Личный опыт, наблюдения, мифы и выводы</small></span><span class="doc-details__chev"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></span></summary>
             <div class="doc-details__body">
               <div class="prose prose--wide">
@@ -955,13 +942,17 @@
             <a href="#part-1">Главная</a>
             <a href="#part-2">Программа</a>
             <a href="#seven-fields">Телесные техники</a>
-            <a href="#part-3">Банный ретрит</a>
+            <a href="#part-3">Банный Ритуал</a>
             <a href="#part-4">Личный путь</a>
           </nav>
         </div>
       </div>
       <div class="footer__bottom">
         <span>© <span id="year"></span> Сунита Таубаева</span>
+        <nav class="footer__legal" aria-label="Юридические документы">
+          <a href="offer.html">Публичная оферта</a>
+          <a href="privacy.html">Политика конфиденциальности</a>
+        </nav>
         <a href="#part-1">К началу</a>
       </div>
     </div>
@@ -996,6 +987,10 @@
                  value="+7 " aria-describedby="phone-hint">
           <small class="field__hint" id="phone-hint">Введите 10 цифр после +7</small>
         </label>
+        <label class="check register-form__consent">
+          <input type="checkbox" name="consent" required checked>
+          <span>Я принимаю <a href="offer.html" target="_blank" rel="noopener">условия публичной оферты</a> и даю согласие на обработку персональных данных согласно <a href="privacy.html" target="_blank" rel="noopener">политике конфиденциальности</a>.</span>
+        </label>
         <button class="btn btn--wa btn--block" type="submit">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M20.5 11.7a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.4-4.3a8.5 8.5 0 1 1 15.6-4.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
@@ -1006,6 +1001,7 @@
       </form>
     </section>
   </div>
+  <script src="js/motion.js" defer></script>
   <script src="js/main.js" defer></script>
 </body>
 </html>

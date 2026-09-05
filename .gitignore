@@ -3,3 +3,5 @@ node_modules/
 Thumbs.db
 *.log
 _qa/
+.playwright-cli/
+output/

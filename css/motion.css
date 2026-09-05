@@ -1,0 +1,51 @@
+/* All motion lives here and in motion.js. Layout styles remain static. */
+:root {
+  --motion-ease: cubic-bezier(.19, 1, .22, 1);
+  --motion-ui: cubic-bezier(.22, .68, 0, 1.01);
+}
+.motion-pending { opacity: 0; }
+/* Keep independent text entrances inside the rounded card silhouette. */
+.card[data-enter="surface"] { overflow: clip; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .btn, .card, .triad__item, .ritual-step, .stage, .price-card {
+    transition: transform 300ms var(--motion-ease), box-shadow 300ms ease,
+      border-color 220ms ease, background-position 450ms ease, color 180ms ease;
+  }
+  .nav__link, .footer a, .drawer__link, .tabs__btn, .vtabs__btn,
+  .doc-details > summary, .doc-details__chev, .register-form__input {
+    transition: color 180ms ease, background-color 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+  }
+  .nav__link::after { transition: transform 300ms var(--motion-ease); }
+  .doc-details { transition: border-color 240ms ease, box-shadow 240ms ease; }
+  .doc-details__chev svg { transition: transform 340ms var(--motion-ui); }
+  .hdr { transition: background-color 240ms ease, box-shadow 240ms ease; }
+  .burger span { transition: transform 260ms var(--motion-ui), opacity 160ms ease; }
+  .drawer { transition: opacity 240ms ease, transform 360ms var(--motion-ease), visibility 360ms; }
+  .drawer__link { transform: translateY(10px); opacity: 0; transition: transform 420ms var(--motion-ease), opacity 240ms ease; }
+  .drawer.is-open .drawer__link { opacity: 1; transform: none; }
+  .drawer.is-open .drawer__link:nth-child(2) { transition-delay: 35ms; }
+  .drawer.is-open .drawer__link:nth-child(3) { transition-delay: 70ms; }
+  .drawer.is-open .drawer__link:nth-child(4) { transition-delay: 105ms; }
+  .drawer.is-open .drawer__link:nth-child(5) { transition-delay: 140ms; }
+  .register-modal { transition: opacity 280ms ease; }
+  .register-modal__dialog { transition: transform 280ms var(--motion-ease); }
+}
+.doc-details.motion-closing .doc-details__chev svg { transform: rotate(0); }
+
+@media (hover: hover) and (pointer: fine) {
+  .card--hover:hover, .triad__item:hover { transform: translateY(-4px); }
+  .btn:active { transform: translateY(1px) scale(.985); }
+}
+@media (hover: none) {
+  .btn:hover, .card--hover:hover, .triad__item:hover { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html, .vtabs__nav { scroll-behavior: auto; }
+  .motion-pending { opacity: 1; }
+  .btn:hover, .card--hover:hover, .triad__item:hover { transform: none; }
+}
+@media print {
+  .motion-pending { opacity: 1 !important; }
+  [data-enter] { transform: none !important; opacity: 1 !important; }
+}

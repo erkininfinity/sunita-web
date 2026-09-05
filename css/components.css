@@ -17,8 +17,6 @@
   letter-spacing: 0.02em;
   text-align: center;
   cursor: pointer;
-  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease),
-    background-color 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease);
 }
 
 .btn:hover {
@@ -113,7 +111,6 @@
   gap: 0.5em;
   font-weight: 700;
   color: var(--blue-700);
-  transition: gap 0.3s var(--ease), color 0.3s var(--ease);
 }
 
 .link-arrow:hover {
@@ -207,7 +204,6 @@
   border-radius: var(--r-lg);
   background: #fff;
   box-shadow: var(--shadow-sm);
-  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease), border-color 0.5s var(--ease);
 }
 
 .card--hover:hover {
@@ -249,7 +245,6 @@
   border-radius: var(--r-lg) var(--r-lg) 0 0;
   background: var(--grad-accent);
   opacity: 0;
-  transition: opacity 0.45s var(--ease);
 }
 
 .card--hover:hover .card__topline {
@@ -336,7 +331,6 @@
   border-radius: var(--r-md);
   background: #fff;
   overflow: hidden;
-  transition: border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
 }
 
 .acc__item.is-open {
@@ -351,7 +345,6 @@
   width: 100%;
   padding: clamp(1rem, 1.7vw, 1.35rem) clamp(1.1rem, 2vw, 1.6rem);
   text-align: left;
-  transition: background-color 0.35s var(--ease);
 }
 
 .acc__btn:hover {
@@ -384,8 +377,6 @@
   height: 34px;
   border-radius: 50%;
   border: 1px solid var(--line-strong);
-  transition: transform 0.45s var(--ease), background-color 0.35s var(--ease),
-    border-color 0.35s var(--ease);
 }
 
 .acc__icon::before,
@@ -399,7 +390,6 @@
   border-radius: 2px;
   background: var(--ink-2);
   transform: translate(-50%, -50%);
-  transition: transform 0.45s var(--ease), background-color 0.35s var(--ease);
 }
 
 .acc__icon::after {
@@ -425,7 +415,6 @@
 .acc__panel {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 0.5s var(--ease);
 }
 
 .acc__item.is-open .acc__panel {
@@ -446,7 +435,6 @@
 .acc__body > * {
   opacity: 0;
   transform: translateY(8px);
-  transition: opacity 0.45s var(--ease) 0.08s, transform 0.45s var(--ease) 0.08s;
 }
 
 .acc__item.is-open .acc__body > * {
@@ -472,7 +460,6 @@
 .more__btn svg {
   width: 14px;
   height: 14px;
-  transition: transform 0.4s var(--ease);
 }
 
 .more.is-open .more__btn svg {
@@ -482,7 +469,6 @@
 .more__panel {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 0.5s var(--ease);
 }
 
 .more.is-open .more__panel {
@@ -521,7 +507,6 @@
   font-weight: 700;
   color: var(--ink-3);
   white-space: nowrap;
-  transition: color 0.3s var(--ease), background 0.4s var(--ease), box-shadow 0.4s var(--ease);
 }
 
 .tabs__btn:hover {
@@ -550,21 +535,6 @@
   display: none;
 }
 
-.tabs__panel {
-  animation: tabIn 0.55s var(--ease) both;
-}
-
-@keyframes tabIn {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
 /* Vertical tabs (desktop) */
 .vtabs {
   display: grid;
@@ -591,7 +561,6 @@
   font-size: 0.95rem;
   font-weight: 700;
   color: var(--ink-3);
-  transition: all 0.4s var(--ease);
 }
 
 .vtabs__btn:hover {
@@ -623,10 +592,6 @@
   display: none;
 }
 
-.vtabs__panel:not([hidden]) {
-  animation: tabIn 0.55s var(--ease) both;
-}
-
 @media (max-width: 900px) {
   .vtabs {
     grid-template-columns: minmax(0, 1fr);
@@ -654,7 +619,6 @@
   height: 100%;
   min-height: inherit;
   transform-style: preserve-3d;
-  transition: transform 0.85s var(--ease);
 }
 
 .flip.is-flipped .flip__inner {
@@ -750,7 +714,6 @@
   border: 1px solid var(--line-strong);
   color: var(--ink);
   background: #fff;
-  transition: all 0.35s var(--ease);
 }
 
 .slider__btn:hover {
@@ -784,7 +747,6 @@
   border: 1px solid var(--line-strong);
   border-radius: var(--r-sm);
   background: #fff;
-  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
 
 textarea.field__input {
@@ -827,7 +789,6 @@ textarea.field__input {
   place-items: center;
   padding: var(--gutter);
   opacity: 0;
-  transition: opacity 0.28s var(--ease);
 }
 
 .register-modal.is-open {
@@ -858,7 +819,6 @@ textarea.field__input {
   background: #fff;
   box-shadow: 0 30px 90px -30px rgba(8, 24, 51, 0.55);
   transform: translateY(18px) scale(0.98);
-  transition: transform 0.32s var(--ease);
 }
 
 .register-modal.is-open .register-modal__dialog {
@@ -935,6 +895,23 @@ textarea.field__input {
   accent-color: var(--blue-500);
 }
 
+.check a {
+  color: var(--blue-700);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
+}
+
+.check a:hover {
+  color: var(--blue-500);
+}
+
+.check a:focus-visible {
+  border-radius: 3px;
+  outline: 2px solid var(--blue-500);
+  outline-offset: 3px;
+}
+
 /* --- Floating messenger --------------------------------------------------- */
 
 .fab {
@@ -955,7 +932,6 @@ textarea.field__input {
   opacity: 0;
   transform: translateY(20px) scale(0.9);
   pointer-events: none;
-  transition: all 0.5s var(--ease);
 }
 
 .fab.is-visible {

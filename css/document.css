@@ -10,17 +10,11 @@
   overflow: hidden;
 }
 
-html:not(.js) .reveal {
-  opacity: 1;
-  transform: none;
-}
-
 .chapter-section,
 .method-section,
 .cold-gold,
 #seven-fields,
 #tracker,
-#mastermind,
 #clothing {
   scroll-margin-top: 82px;
 }
@@ -106,7 +100,58 @@ html:not(.js) .reveal {
 
 .hero--document .hero__title {
   max-width: 15ch;
-  font-size: clamp(2.7rem, 6vw, 5rem);
+  font-size: clamp(2.7rem, 6vw, 4.6rem);
+}
+
+.hero__price {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  width: fit-content;
+  margin-top: 0.15rem;
+  padding: 0.5em 1.05em 0.5em 0.65em;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-pill);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--ink-2);
+  background: rgba(255, 255, 255, 0.7);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.hero__price-icon {
+  display: inline-grid;
+  place-items: center;
+  align-self: center;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  line-height: 0;
+  border-radius: 50%;
+  color: #fff;
+  background: var(--grad-accent);
+  box-shadow: 0 8px 18px -10px rgba(53, 118, 207, 0.8);
+}
+
+.hero__price-icon svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.hero__price-copy {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.32em;
+  line-height: 1.35;
+}
+
+.hero__price-copy strong {
+  font-size: inherit;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
 .hero--document .hero__photo {
@@ -187,7 +232,6 @@ html:not(.js) .reveal {
   background: #fff;
   box-shadow: var(--shadow-sm);
   overflow: clip;
-  transition: border-color 0.35s var(--ease), box-shadow 0.35s var(--ease);
 }
 
 .doc-details[open] {
@@ -267,7 +311,6 @@ html:not(.js) .reveal {
 .doc-details__chev svg {
   width: 20px;
   height: 20px;
-  transition: transform 0.4s var(--ease);
 }
 
 .doc-details[open] .doc-details__chev svg {
@@ -699,55 +742,6 @@ html:not(.js) .tabs__panel + .tabs__panel {
   color: var(--blue-500);
 }
 
-/* Mastermind */
-.mastermind-section {
-  background: #fff;
-}
-
-.doc-details--mastermind {
-  border-radius: var(--r-lg);
-  background: var(--grad-accent-soft);
-}
-
-.doc-details--mastermind > summary {
-  min-height: 98px;
-  padding: clamp(1.2rem, 3vw, 2rem);
-}
-
-.mastermind-steps {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-  margin: 1.5rem 0 2rem;
-}
-
-.mastermind-steps article {
-  display: grid;
-  grid-template-columns: 42px minmax(0, 1fr);
-  gap: 0.8rem;
-  padding: clamp(1rem, 2vw, 1.4rem);
-  border: 1px solid var(--line);
-  border-radius: var(--r-md);
-  background: rgba(255, 255, 255, 0.76);
-}
-
-.mastermind-steps article > span {
-  font-size: 0.75rem;
-  font-weight: 800;
-  color: var(--lilac-700);
-}
-
-.mastermind-steps article > div {
-  display: grid;
-  align-content: start;
-  gap: 0.6rem;
-}
-
-.mastermind-steps p,
-.mastermind-steps li {
-  font-size: 0.92rem;
-}
-
 /* Clothing */
 .clothing-tabs {
   margin-top: 1rem;
@@ -1083,7 +1077,6 @@ html:not(.js) .tabs__panel + .tabs__panel {
     font-size: 5.5rem;
   }
 
-  .mastermind-steps,
   .diary-card,
   .conclusion-panel {
     grid-template-columns: minmax(0, 1fr);
@@ -1190,9 +1183,6 @@ html:not(.js) .tabs__panel + .tabs__panel {
     grid-template-columns: 34px minmax(0, 1fr);
   }
 
-  .mastermind-steps article {
-    grid-template-columns: minmax(0, 1fr);
-  }
 }
 
 @media print {

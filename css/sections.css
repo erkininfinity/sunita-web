@@ -8,8 +8,6 @@
   position: fixed;
   inset: 0 0 auto;
   z-index: 100;
-  transition: background-color 0.45s var(--ease), box-shadow 0.45s var(--ease),
-    backdrop-filter 0.45s var(--ease);
 }
 
 .hdr.is-stuck {
@@ -76,7 +74,6 @@
   font-weight: 600;
   white-space: nowrap;
   color: var(--ink-2);
-  transition: color 0.3s var(--ease);
 }
 
 .nav__link::after {
@@ -90,7 +87,6 @@
   background: var(--grad-accent);
   transform: scaleX(0);
   transform-origin: 0 50%;
-  transition: transform 0.4s var(--ease);
 }
 
 .nav__link:hover {
@@ -126,7 +122,6 @@
   border-radius: 2px;
   background: var(--ink);
   transform: translateX(-50%);
-  transition: transform 0.45s var(--ease), opacity 0.3s var(--ease);
 }
 
 .burger span:nth-child(1) {
@@ -162,6 +157,8 @@
 .drawer {
   position: fixed;
   inset: 0;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
   z-index: 99;
   display: grid;
   align-content: start;
@@ -173,7 +170,6 @@
   opacity: 0;
   visibility: hidden;
   transform: translateY(-12px);
-  transition: opacity 0.45s var(--ease), transform 0.45s var(--ease), visibility 0.45s;
 }
 
 .drawer.is-open {
@@ -308,7 +304,6 @@
   display: flex;
   gap: 3rem;
   width: max-content;
-  animation: marquee 34s linear infinite;
 }
 
 .hero__marqueeTrack span {
@@ -328,18 +323,6 @@
   height: 8px;
   border-radius: 50%;
   background: var(--grad-accent);
-}
-
-@keyframes marquee {
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero__marqueeTrack {
-    animation: none;
-  }
 }
 
 /* --- Brand triad ---------------------------------------------------------- */
@@ -367,7 +350,6 @@
   background: rgba(255, 255, 255, 0.7);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
 }
 
 .triad__item:hover {
@@ -529,7 +511,6 @@
   gap: 0.55rem;
   padding: clamp(1.4rem, 2.4vw, 2rem);
   background: #fff;
-  transition: background-color 0.45s var(--ease);
 }
 
 .plist__item:hover {
@@ -672,7 +653,6 @@
   width: 7%;
   border-radius: var(--r-pill);
   background: var(--grad-accent);
-  transition: width 0.6s var(--ease);
 }
 
 .days__toolbar {
@@ -1015,7 +995,6 @@
   border-radius: var(--r-md);
   border: 1px solid var(--line);
   background: #fff;
-  transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease);
 }
 
 .book:hover {
@@ -1182,7 +1161,6 @@
   border: 1px solid var(--line);
   background: #fff;
   box-shadow: var(--shadow-sm);
-  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
 }
 
 .price:hover {
@@ -1388,7 +1366,6 @@
 
 .footer__links a {
   color: rgba(255, 255, 255, 0.72);
-  transition: color 0.3s var(--ease);
 }
 
 .footer__links a:hover {
@@ -1403,6 +1380,38 @@
   padding-top: 1.6rem;
   font-size: var(--fs-small);
   color: rgba(255, 255, 255, 0.6);
+}
+
+.footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.45rem 1.1rem;
+}
+
+.footer__legal a,
+.footer__bottom > a {
+  color: rgba(255, 255, 255, 0.72);
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.25);
+  text-underline-offset: 0.2em;
+}
+
+.footer__legal a:hover,
+.footer__bottom > a:hover {
+  color: #fff;
+  text-decoration-color: currentColor;
+}
+
+@media (max-width: 720px) {
+  .footer__bottom,
+  .footer__legal {
+    justify-content: flex-start;
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+  }
 }
 
 .socials {
@@ -1420,7 +1429,6 @@
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.18);
   color: rgba(255, 255, 255, 0.8);
-  transition: all 0.35s var(--ease);
 }
 
 .socials a:hover {
