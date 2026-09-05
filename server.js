@@ -22,6 +22,8 @@ const MIME_TYPES = {
   ".woff": "font/woff",
   ".woff2": "font/woff2",
   ".ttf": "font/ttf",
+  ".txt": "text/plain; charset=utf-8",
+  ".xml": "application/xml; charset=utf-8",
 };
 
 const COMPRESSIBLE = new Set([
@@ -30,6 +32,8 @@ const COMPRESSIBLE = new Set([
   "application/javascript; charset=utf-8",
   "application/json; charset=utf-8",
   "image/svg+xml",
+  "text/plain; charset=utf-8",
+  "application/xml; charset=utf-8",
 ]);
 
 const cache = new Map();
@@ -52,59 +56,73 @@ function getFile(filePath, contentType) {
   return entry;
 }
 
+const publicPages = new Set(["/", "/index.html", "/privacy.html", "/offer.html", "/robots.txt", "/sitemap.xml"]);
 const server = http.createServer((req, res) => {
-  const urlPath = decodeURIComponent(req.url.split("?")[0]);
-
+  function error(status, message) {
+    res.writeHead(status, { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "no-store" });
+    res.end(message);
+  }
+  if (req.method !== "GET" && req.method !== "HEAD") {
+    res.setHeader("Allow", "GET, HEAD");
+    return error(405, "405 Method Not Allowed");
+  }
+  let urlPath;
+  try {
+    urlPath = decodeURIComponent(req.url.split("?")[0]);
+  } catch {
+    return error(400, "400 Bad Request");
+  }
+  if (!urlPath.startsWith("/") || /[\\\0]/.test(urlPath)) return error(400, "400 Bad Request");
   if (urlPath === "/health") {
     res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "no-store" });
-    return res.end("ok");
+    return res.end(req.method === "HEAD" ? undefined : "ok");
   }
-
-  let filePath = path.join(__dirname, urlPath === "/" ? "/index.html" : urlPath);
-
-  if (!filePath.startsWith(__dirname + path.sep)) {
-    res.writeHead(403, { "Content-Type": "text/plain; charset=utf-8" });
-    return res.end("403 Forbidden");
+  // Serve only published pages and assets, never source/configuration/test files.
+  const ext = path.extname(urlPath).toLowerCase();
+  const publicAsset = /^\/(assets|css|js)\//.test(urlPath) && Object.hasOwn(MIME_TYPES, ext);
+  if (urlPath.split("/").some(part => part.startsWith(".")) || (!publicPages.has(urlPath) && !publicAsset)) {
+    return error(404, "404 Not Found");
   }
-
-  let stats;
-  try {
-    stats = fs.statSync(filePath);
-    if (stats.isDirectory()) {
-      filePath = path.join(filePath, "index.html");
-      stats = fs.statSync(filePath);
-    }
-  } catch {
-    res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
-    return res.end("404 Not Found");
-  }
-
-  const ext = path.extname(filePath).toLowerCase();
-  const contentType = MIME_TYPES[ext] || "application/octet-stream";
-  const file = getFile(filePath, contentType);
-  const isAsset = filePath.includes("assets");
-
-  if (req.headers["if-none-match"] === file.etag) {
-    res.writeHead(304, { ETag: file.etag });
+  if (urlPath === "/index.html") {
+    const query = req.url.includes("?") ? req.url.slice(req.url.indexOf("?")) : "";
+    res.writeHead(301, { Location: "/" + query });
     return res.end();
   }
-
+  const filePath = path.join(__dirname, urlPath === "/" ? "/index.html" : urlPath);
+  const contentType = MIME_TYPES[ext] || "text/html; charset=utf-8";
+  let file;
+  try {
+    const resolved = fs.realpathSync(filePath);
+    if (!resolved.startsWith(__dirname + path.sep) || !fs.statSync(resolved).isFile()) return error(404, "404 Not Found");
+    file = getFile(resolved, contentType);
+  } catch {
+    return error(404, "404 Not Found");
+  }
   const headers = {
     "Content-Type": contentType,
     ETag: file.etag,
     Vary: "Accept-Encoding",
-    "Cache-Control": isAsset ? "public, max-age=31536000, immutable" : "no-cache",
+    "Cache-Control": urlPath.startsWith("/assets/") ? "public, max-age=31536000, immutable" : "no-cache",
+    "X-Content-Type-Options": "nosniff",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
   };
-
-  const acceptsGzip = (req.headers["accept-encoding"] || "").includes("gzip");
+  if (req.headers["if-none-match"] === file.etag) {
+    res.writeHead(304, headers);
+    return res.end();
+  }
+  const acceptsGzip = (req.headers["accept-encoding"] || "").split(",").some(value => {
+    const [encoding, ...parameters] = value.trim().split(";");
+    const quality = parameters.find(parameter => /^\s*q=/.test(parameter));
+    return encoding === "gzip" && (!quality || Number(quality.trim().slice(2)) > 0);
+  });
   const body = file.gzip && acceptsGzip ? file.gzip : file.raw;
   if (file.gzip && acceptsGzip) headers["Content-Encoding"] = "gzip";
   headers["Content-Length"] = body.length;
-
   res.writeHead(200, headers);
-  res.end(body);
+  res.end(req.method === "HEAD" ? undefined : body);
 });
 
-server.listen(PORT, "0.0.0.0", () => {
-  console.log(`SENERGY running on ${PORT}`);
-});
+if (require.main === module) {
+  server.listen(PORT, "0.0.0.0", () => console.log(`SENERGY running on ${PORT}`));
+}
+module.exports = server;

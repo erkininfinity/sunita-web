@@ -199,12 +199,25 @@
     var closeTimer = null;
     var nameInput = qs('[name="name"]', form);
     var phoneInput = qs('[name="phone"]', form);
+    var dialog = qs(".register-modal__dialog", modal);
+    var inertBackground = [];
+
+    function validateName() {
+      if (nameInput) nameInput.setCustomValidity(nameInput.value.trim() ? "" : "Введите ваши фамилию и имя");
+    }
+    if (nameInput) nameInput.addEventListener("input", validateName);
 
     function formatPhone() {
       if (!phoneInput) return;
-      var digits = phoneInput.value.replace(/\D/g, "");
-      if (digits.charAt(0) === "7") digits = digits.slice(1);
-      digits = digits.slice(0, 10);
+      var original = phoneInput.value;
+      var caret = phoneInput.selectionStart;
+      var digits = original.replace(/\D/g, "");
+      var hasPrefix = /^\s*\+7/.test(original) || (digits.length === 11 && /^[78]/.test(digits));
+      if (hasPrefix) digits = digits.slice(1);
+      if ((/^\s*\+/.test(original) && !/^\s*\+7/.test(original)) || digits.length > 10) {
+        phoneInput.setCustomValidity("Введите номер +7 и 10 цифр; можно вставить номер с 8");
+        return;
+      }
 
       var formatted = "+7";
       if (digits.length) formatted += " " + digits.slice(0, 3);
@@ -212,6 +225,16 @@
       if (digits.length > 6) formatted += " " + digits.slice(6, 10);
       phoneInput.value = formatted;
       phoneInput.setCustomValidity(digits.length === 10 ? "" : "Введите 10 цифр после +7");
+      if (document.activeElement === phoneInput && caret !== null) {
+        var wanted = original.slice(0, caret).replace(/\D/g, "").length + (hasPrefix ? 0 : 1);
+        var position = 0, seen = 0;
+        while (position < formatted.length && seen < wanted) {
+          if (/\d/.test(formatted.charAt(position))) seen++;
+          position++;
+        }
+        if (caret === original.length) position = formatted.length;
+        phoneInput.setSelectionRange(position, position);
+      }
     }
 
     if (phoneInput) {
@@ -225,6 +248,13 @@
       if (closeTimer) window.clearTimeout(closeTimer);
       previousFocus = document.activeElement;
       modal.hidden = false;
+      inertBackground = Array.from(document.body.children).filter(function (element) {
+        return element !== modal && element instanceof HTMLElement && !element.matches("script,style");
+      }).map(function (element) {
+        var state = { element: element, inert: element.inert };
+        element.inert = true;
+        return state;
+      });
       document.body.classList.add("is-locked");
       window.requestAnimationFrame(function () {
         modal.classList.add("is-open");
@@ -237,6 +267,8 @@
     function closeModal() {
       modal.classList.remove("is-open");
       document.body.classList.remove("is-locked");
+      inertBackground.forEach(function (state) { state.element.inert = state.inert; });
+      inertBackground = [];
       closeTimer = window.setTimeout(function () {
         modal.hidden = true;
       }, 280);
@@ -254,12 +286,25 @@
     });
 
     document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape" && !modal.hidden) closeModal();
+      if (modal.hidden || !modal.classList.contains("is-open")) return;
+      if (event.key === "Escape") { event.preventDefault(); closeModal(); }
+      if (event.key === "Tab") {
+        var controls = qsa('a[href],button,input,[tabindex="0"]', dialog).filter(function (element) {
+          return !element.disabled && element.tabIndex >= 0 && element.getClientRects().length;
+        });
+        var first = controls[0], last = controls[controls.length - 1];
+        if (event.shiftKey && (document.activeElement === first || document.activeElement === dialog)) {
+          event.preventDefault(); last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault(); first.focus();
+        }
+      }
     });
 
     form.addEventListener("submit", function (event) {
       event.preventDefault();
       formatPhone();
+      validateName();
       if (!form.reportValidity()) return;
 
       var formData = new FormData(form);
@@ -268,8 +313,13 @@
       var message = [
         "Здравствуйте! Хочу зарегистрироваться на марафон SENERGY.",
         "",
-        "Имя: " + name,
-        "Телефон: " + phone
+        "ФИО: " + name,
+        "Телефон: " + phone,
+        "",
+        "Принимаю публичную оферту. Даю ИП SENERGY (ИИН/БИН 821230350645) согласие на обработку ФИО и телефона для записи, связи и исполнения договора, включая передачу WhatsApp/Meta и трансграничную обработку, до достижения этих целей или отзыва согласия. Условия — в политике конфиденциальности.",
+        "Документы: https://senergies.kz/offer.html и https://senergies.kz/privacy.html",
+        "Редакция документов: " + form.dataset.consentVersion,
+        "Дата подтверждения: " + new Date().toISOString()
       ].join("\n");
       var whatsappUrl = "https://wa.me/77767432828?text=" + encodeURIComponent(message);
 

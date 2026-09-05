@@ -3,21 +3,34 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Информационно-трансформационный марафон — Сунита Таубаева</title>
+  <title>SENERGY — марафон Суниты Таубаевой | senergies.kz</title>
   <meta name="description" content="Полная программа Суниты Таубаевой: 14-дневный марафон мягкого входа в закаливание, телесные и дыхательные практики, питание и банный ритуал.">
+  <link rel="canonical" href="https://senergies.kz/">
+  <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="theme-color" content="#0f2144">
 
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ru_RU">
   <meta property="og:site_name" content="SENERGY">
-  <meta property="og:title" content="Информационно-трансформационный марафон">
+  <meta property="og:title" content="SENERGY — марафон Суниты Таубаевой">
   <meta property="og:description" content="14-дневный марафон мягкого входа в закаливание и материалы авторской методологии Суниты Таубаевой.">
 
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&amp;family=Manrope:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+  <meta property="og:url" content="https://senergies.kz/">
+  <meta property="og:image" content="https://senergies.kz/assets/img/social-preview-v1.jpg">
+  <meta property="og:image:secure_url" content="https://senergies.kz/assets/img/social-preview-v1.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="SENERGY — 14-дневный марафон Суниты Таубаевой. Закаливание, телесные и дыхательные практики.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SENERGY — марафон Суниты Таубаевой">
+  <meta name="twitter:description" content="14 дней: мягкий вход в закаливание, телесные и дыхательные практики.">
+  <meta name="twitter:image" content="https://senergies.kz/assets/img/social-preview-v1.jpg">
+  <meta name="twitter:image:alt" content="SENERGY — марафон Суниты Таубаевой">
 
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <link rel="stylesheet" href="css/fonts.css">
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/sections.css">
@@ -32,23 +45,36 @@
   </script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Person",
-        "@id": "#sunita",
-        "name": "Сунита Таубаева"
-      },
-      {
-        "@type": "Course",
-        "name": "Информационно-трансформационный марафон",
-        "description": "14-дневный марафон мягкого входа в закаливание с телесными и дыхательными практиками, питанием и банным ритуалом.",
-        "inLanguage": "ru",
-        "author": { "@id": "#sunita" }
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://senergies.kz/#website",
+      "url": "https://senergies.kz/",
+      "name": "SENERGY",
+      "alternateName": "senergies.kz",
+      "inLanguage": "ru"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://senergies.kz/#sunita",
+      "name": "Сунита Таубаева",
+      "image": "https://senergies.kz/assets/img/sunita-800.webp"
+    },
+    {
+      "@type": "Course",
+      "@id": "https://senergies.kz/#marathon",
+      "url": "https://senergies.kz/",
+      "name": "SENERGY — информационно-трансформационный марафон",
+      "description": "14-дневный марафон мягкого входа в закаливание с телесными и дыхательными практиками, питанием и банным ритуалом.",
+      "inLanguage": "ru",
+      "author": {
+        "@id": "https://senergies.kz/#sunita"
       }
-    ]
-  }
+    }
+  ]
+}
   </script>
 </head>
 <body>
@@ -973,20 +999,20 @@
     <section class="register-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="register-title" tabindex="-1">
       <button class="register-modal__close" type="button" data-register-close aria-label="Закрыть форму">×</button>
       <h2 class="h2" id="register-title">Запись на марафон SENERGY</h2>
-      <form class="register-form" id="register-form">
+      <form class="register-form" id="register-form" data-consent-version="2026-09-05">
         <label class="field">
-          <span class="field__label">Ваше имя</span>
-          <input class="field__input" type="text" name="name" autocomplete="name" required placeholder="Например, Айгуль">
+          <span class="field__label">Ваше ФИО</span>
+          <input class="field__input" type="text" name="name" autocomplete="name" required placeholder="Фамилия, имя, отчество (при наличии)">
         </label>
         <label class="field">
           <span class="field__label">Номер телефона</span>
           <input class="field__input" type="tel" name="phone" autocomplete="tel" inputmode="tel" enterkeyhint="done"
-                 required maxlength="15" pattern="\+7 [0-9]{3} [0-9]{3} [0-9]{4}"
+                 required maxlength="32" pattern="\+7 [0-9]{3} [0-9]{3} [0-9]{4}"
                  value="+7 ">
         </label>
         <label class="check register-form__consent">
-          <input type="checkbox" name="consent" required checked>
-          <span>Я принимаю <a href="offer.html" target="_blank" rel="noopener">условия публичной оферты</a> и даю согласие на обработку персональных данных согласно <a href="privacy.html" target="_blank" rel="noopener">политике конфиденциальности</a>.</span>
+          <input type="checkbox" name="consent" required>
+          <span>Я принимаю <a href="offer.html" target="_blank" rel="noopener">условия публичной оферты</a> и даю согласие на обработку и передачу данных в WhatsApp/Meta согласно <a href="privacy.html" target="_blank" rel="noopener">политике конфиденциальности</a>.</span>
         </label>
         <button class="btn btn--wa btn--block" type="submit">
           <svg viewBox="0 0 24 24" aria-hidden="true">

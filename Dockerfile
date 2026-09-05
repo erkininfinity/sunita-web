@@ -1,5 +1,5 @@
 FROM node:22-alpine
-RUN apk add --no-cache wget
+RUN apk add --no-cache wget curl
 WORKDIR /app
 COPY package.json ./
 COPY . .
