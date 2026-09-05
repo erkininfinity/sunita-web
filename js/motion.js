@@ -1,15 +1,13 @@
 /* SENERGY motion: viewport choreography, with native HTML as the fallback. */
 (function () {
   "use strict";
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
-  var compact = window.matchMedia("(max-width: 700px)");
   var ease = "cubic-bezier(.19,1,.22,1)";
   var active = new Set();
   var observer;
   var pending = new Set();
 
   function play(element, frames, options) {
-    if (reduce.matches || !element.animate) return null;
+    if (!element.animate) return null;
     var animation = element.animate(frames, options);
     active.add(animation);
     animation.finished.then(function () { active.delete(animation); }, function () { active.delete(animation); });
@@ -17,19 +15,18 @@
   }
 
   function entrance(element, kind, delay) {
-    var mobile = compact.matches;
     var insideSurface = element.parentElement.closest('[data-enter="surface"]');
-    var distance = insideSurface ? (mobile ? 22 : 36) : (mobile ? 34 : 64);
+    var distance = insideSurface ? 36 : 64;
     var starts = {
       left: "translate3d(-" + distance + "px,0,0)",
       right: "translate3d(" + distance + "px,0,0)",
-      down: "translate3d(0,-" + (mobile ? 24 : 38) + "px,0)",
-      up: "translate3d(0," + (mobile ? 24 : 38) + "px,0)",
+      down: "translate3d(0,-" + 38 + "px,0)",
+      up: "translate3d(0," + 38 + "px,0)",
       surface: "none",
-      photo: "translate3d(" + (mobile ? 38 : 68) + "px,0,0) scale(.975)"
+      photo: "translate3d(" + 68 + "px,0,0) scale(.975)"
     };
     return play(element, [{ opacity: 0, transform: starts[kind] || starts.up }, { opacity: 1, transform: "none" }], {
-      duration: kind === "surface" ? 650 : kind === "photo" ? 1550 : mobile ? 1150 : 1400,
+      duration: kind === "surface" ? 650 : kind === "photo" ? 1550 : 1400,
       delay: delay || 0, easing: ease, fill: "backwards"
     });
   }
@@ -116,7 +113,6 @@
       });
     }, { threshold: 0, rootMargin: "0px 0px -24px 0px" });
     pending.forEach(function (element) {
-      if (reduce.matches) return;
       element.classList.add("motion-pending");
       observer.observe(element);
     });
@@ -128,11 +124,6 @@
         var target = animation.effect && animation.effect.target;
         if (target && (target.contains(event.target) || event.target.contains(target))) animation.finish();
       });
-    });
-    reduce.addEventListener("change", function () {
-      if (!reduce.matches) return;
-      active.forEach(function (animation) { animation.finish(); });
-      pending.forEach(function (element) { reveal(element, 0); });
     });
     window.addEventListener("beforeprint", function () {
       pending.forEach(function (element) {
@@ -151,7 +142,6 @@
       var running = null;
       var expanded = details.open;
       summary.addEventListener("click", function (event) {
-        if (reduce.matches) return; // Retain native keyboard and pointer behavior.
         event.preventDefault();
         var from = details.getBoundingClientRect().height;
         if (running) running.cancel();
@@ -165,7 +155,7 @@
           if (expanded) animateContents(body);
         }
         running = play(details, [{ height: from + "px" }, { height: to + "px" }], {
-          duration: compact.matches ? 300 : 380, easing: "cubic-bezier(.22,.68,0,1.01)"
+          duration: 380, easing: "cubic-bezier(.22,.68,0,1.01)"
         });
         if (!running) { details.open = expanded; return; }
         running.onfinish = function () {
@@ -179,7 +169,6 @@
   }
 
   function animateContents(root) {
-    if (reduce.matches) return;
     var children = Array.from(root.children);
     // Text enters as meaningful paragraphs, keeping line wrapping and selection native.
     children.filter(function (child) {

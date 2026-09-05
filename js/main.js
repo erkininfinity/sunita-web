@@ -228,7 +228,9 @@
       document.body.classList.add("is-locked");
       window.requestAnimationFrame(function () {
         modal.classList.add("is-open");
-        if (nameInput) nameInput.focus();
+        var focusTarget = window.matchMedia("(pointer: coarse)").matches
+          ? qs(".register-modal__dialog", modal) : nameInput;
+        if (focusTarget) focusTarget.focus({ preventScroll: true });
       });
     }
 
@@ -237,7 +239,7 @@
       document.body.classList.remove("is-locked");
       closeTimer = window.setTimeout(function () {
         modal.hidden = true;
-      }, window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 280);
+      }, 280);
       if (previousFocus && typeof previousFocus.focus === "function") {
         previousFocus.focus();
       }

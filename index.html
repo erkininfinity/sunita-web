@@ -970,11 +970,9 @@
 
   <div class="register-modal" id="register-modal" hidden>
     <button class="register-modal__backdrop" type="button" data-register-close tabindex="-1" aria-label="Закрыть форму"></button>
-    <section class="register-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="register-title">
+    <section class="register-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="register-title" tabindex="-1">
       <button class="register-modal__close" type="button" data-register-close aria-label="Закрыть форму">×</button>
-      <span class="eyebrow">Регистрация</span>
       <h2 class="h2" id="register-title">Запись на марафон SENERGY</h2>
-      <p>Оставьте имя и телефон — мы подготовим сообщение для WhatsApp.</p>
       <form class="register-form" id="register-form">
         <label class="field">
           <span class="field__label">Ваше имя</span>
@@ -984,8 +982,7 @@
           <span class="field__label">Номер телефона</span>
           <input class="field__input" type="tel" name="phone" autocomplete="tel" inputmode="tel" enterkeyhint="done"
                  required maxlength="15" pattern="\+7 [0-9]{3} [0-9]{3} [0-9]{4}"
-                 value="+7 " aria-describedby="phone-hint">
-          <small class="field__hint" id="phone-hint">Введите 10 цифр после +7</small>
+                 value="+7 ">
         </label>
         <label class="check register-form__consent">
           <input type="checkbox" name="consent" required checked>

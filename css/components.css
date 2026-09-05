@@ -787,7 +787,7 @@ textarea.field__input {
   z-index: 180;
   display: grid;
   place-items: center;
-  padding: var(--gutter);
+  padding: 12px;
   opacity: 0;
 }
 
@@ -810,10 +810,11 @@ textarea.field__input {
 .register-modal__dialog {
   position: relative;
   z-index: 1;
-  width: min(100%, 520px);
-  max-height: calc(100svh - 2rem);
+  width: min(100%, 440px);
+  max-height: calc(100svh - 24px);
+  max-height: calc(100dvh - 24px);
   overflow: auto;
-  padding: clamp(1.5rem, 4vw, 2.5rem);
+  padding: 22px;
   border: 1px solid var(--line);
   border-radius: var(--r-lg);
   background: #fff;
@@ -826,17 +827,16 @@ textarea.field__input {
 }
 
 .register-modal__dialog .h2 {
-  margin-top: 0.75rem;
-}
-
-.register-modal__dialog > p {
-  margin-top: 0.75rem;
+  margin: 0;
+  padding-right: 36px;
+  font-size: 30px;
+  line-height: 1.08;
 }
 
 .register-modal__close {
   position: absolute;
-  top: 0.8rem;
-  right: 0.8rem;
+  top: 10px;
+  right: 10px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -853,12 +853,39 @@ textarea.field__input {
 
 .register-form {
   display: grid;
-  gap: 1rem;
-  margin-top: 1.4rem;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.register-form .field {
+  gap: 5px;
+  min-width: 0;
+}
+
+.register-form .field__label {
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.register-form .field__input {
+  min-height: 44px;
+  height: 44px;
+  padding: 10px 12px;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.register-form .register-form__consent {
+  gap: 8px;
+  font-size: 11.5px;
+  line-height: 1.4;
 }
 
 .register-form .btn {
-  margin-top: 0.25rem;
+  min-height: 46px;
+  margin-top: 0;
+  padding-inline: 12px;
+  font-size: 14px;
 }
 
 .register-form .btn svg {
@@ -868,14 +895,23 @@ textarea.field__input {
 
 @media (max-width: 520px) {
   .register-modal {
-    align-items: end;
-    padding: 0.75rem;
+    padding: 10px;
   }
 
   .register-modal__dialog {
     width: 100%;
-    border-radius: var(--r-lg) var(--r-lg) var(--r-md) var(--r-md);
+    padding: 18px;
+    border-radius: 22px;
   }
+
+  .register-modal__dialog .h2 { font-size: 27px; }
+}
+
+@media (max-height: 500px) and (min-width: 540px) {
+  .register-modal__dialog { width: min(100%, 540px); padding: 16px 20px; }
+  .register-modal__dialog .h2 { font-size: 25px; }
+  .register-form { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 12px; gap: 10px 14px; }
+  .register-form__consent, .register-form > .btn { grid-column: 1 / -1; }
 }
 
 .check {

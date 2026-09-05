@@ -7,7 +7,6 @@
 /* Keep independent text entrances inside the rounded card silhouette. */
 .card[data-enter="surface"] { overflow: clip; }
 
-@media (prefers-reduced-motion: no-preference) {
   .btn, .card, .triad__item, .ritual-step, .stage, .price-card {
     transition: transform 300ms var(--motion-ease), box-shadow 300ms ease,
       border-color 220ms ease, background-position 450ms ease, color 180ms ease;
@@ -30,7 +29,6 @@
   .drawer.is-open .drawer__link:nth-child(5) { transition-delay: 140ms; }
   .register-modal { transition: opacity 280ms ease; }
   .register-modal__dialog { transition: transform 280ms var(--motion-ease); }
-}
 .doc-details.motion-closing .doc-details__chev svg { transform: rotate(0); }
 
 @media (hover: hover) and (pointer: fine) {
@@ -38,11 +36,6 @@
   .btn:active { transform: translateY(1px) scale(.985); }
 }
 @media (hover: none) {
-  .btn:hover, .card--hover:hover, .triad__item:hover { transform: none; }
-}
-@media (prefers-reduced-motion: reduce) {
-  html, .vtabs__nav { scroll-behavior: auto; }
-  .motion-pending { opacity: 1; }
   .btn:hover, .card--hover:hover, .triad__item:hover { transform: none; }
 }
 @media print {
