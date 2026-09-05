@@ -41,6 +41,17 @@
     var drawer = qs("#drawer");
     if (!header || !burger || !drawer) return;
 
+    function updateHeaderHeight() {
+      document.documentElement.style.setProperty("--header-height", header.getBoundingClientRect().height + "px");
+    }
+
+    updateHeaderHeight();
+    if ("ResizeObserver" in window) {
+      new ResizeObserver(updateHeaderHeight).observe(header);
+    } else {
+      window.addEventListener("resize", updateHeaderHeight, { passive: true });
+    }
+
     function updateHeader() {
       header.classList.toggle("is-stuck", window.scrollY > 24);
     }

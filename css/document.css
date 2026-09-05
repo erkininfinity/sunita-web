@@ -10,13 +10,9 @@
   overflow: hidden;
 }
 
-.chapter-section,
-.method-section,
-.cold-gold,
-#seven-fields,
-#tracker,
-#clothing {
-  scroll-margin-top: 82px;
+/* Offset native anchor navigation once, by the fixed header's actual height. */
+html {
+  scroll-padding-top: var(--header-height, 78px);
 }
 
 .chapter-head {
